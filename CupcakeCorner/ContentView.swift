@@ -53,30 +53,30 @@ struct ContentView: View {
         NavigationView {
             Form {
                 Section {
-                    Picker("Select your cake type", selection: $order.type) {
+                    Picker("Select your cake type", selection: $order.theOrder.type) {
 // Fix for foreach error if it shows...
 //                        ForEach(0..<Order.types.count, id: \.self) {
-                        ForEach(0..<Order.types.count) {
-                            Text(Order.types[$0])
+                        ForEach(0..<TheOrder.types.count) {
+                            Text(TheOrder.types[$0])
                         }
                     }
                     
-                    Stepper(value: $order.quantity, in: 3...20) {
-                        Text("Number of cakes: \(order.quantity)")
+                    Stepper(value: $order.theOrder.quantity, in: 3...20) {
+                        Text("Number of cakes: \(order.theOrder.quantity)")
                     }
                 }
                     
                 Section {
-                    Toggle(isOn: $order.specialRequestEnabled.animation()) {
+                    Toggle(isOn: $order.theOrder.specialRequestEnabled.animation()) {
                         Text("Any special requests?")
                     }
                     
-                    if order.specialRequestEnabled {
-                        Toggle(isOn: $order.extraFrosting ) {
+                    if order.theOrder.specialRequestEnabled {
+                        Toggle(isOn: $order.theOrder.extraFrosting ) {
                             Text("Add extra frosting")
                         }
                         
-                        Toggle(isOn: $order.addSprinkles) {
+                        Toggle(isOn: $order.theOrder.addSprinkles) {
                             Text("Add extra sprinkles")
                         }
                     }
